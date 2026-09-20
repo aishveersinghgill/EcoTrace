@@ -61,7 +61,7 @@
     },
     {
       "name": "meta",
-      "version": "1.19.0",
+      "version": "1.18.3",
       "dependencies": []
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "name": "vector_math",
-      "version": "2.4.3",
+      "version": "2.4.0",
       "dependencies": []
     },
     {
