@@ -1,2 +1,2 @@
 # EcoTrace
-plastic collection project
+plastic usage project
