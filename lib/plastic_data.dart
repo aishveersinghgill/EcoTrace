@@ -361,7 +361,7 @@ String _monthName(int month) {
 
 List<String> getItemSizes(String type, String material) {
   final base = {
-    'Bottle': ['250 ml', '500 ml', '750 ml', '1 L', '2 L'],
+    'Bottle': ['100 ml', '250 ml', '500 ml', '750 ml', '1 L', '2 L'],
     'Bag': ['Small', 'Medium', 'Large'],
     'Container': ['250 ml', '500 ml', '1 L', '2 L'],
     'Packaging': ['Small', 'Medium', 'Large'],
@@ -378,6 +378,7 @@ double estimateWeight(String type, String material, String size) {
   };
 
   final sizeMultiplier = {
+    '100 ml': 0.5,
     '250 ml': 0.7,
     '500 ml': 1.0,
     '750 ml': 1.4,

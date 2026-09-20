@@ -34,13 +34,40 @@ class _EcoTraceAppState extends State<EcoTraceApp> {
       themeMode: _themeMode,
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: Colors.green,
-        brightness: Brightness.light,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green,
+          brightness: Brightness.light,
+        ),
+        scaffoldBackgroundColor: const Color(0xFFF3F8F3),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFFF3F8F3),
+          foregroundColor: Color(0xFF123524),
+        ),
+        cardTheme: CardThemeData(
+          elevation: 1.5,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+        ),
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: Colors.green,
-        brightness: Brightness.dark,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green,
+          brightness: Brightness.dark,
+        ),
+        scaffoldBackgroundColor: const Color(0xFF0B1210),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF0B1210),
+          foregroundColor: Colors.white,
+        ),
+        cardTheme: CardThemeData(
+          color: const Color(0xFF15251E),
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+        ),
       ),
       home: HomePage(
         records: _records,
@@ -294,10 +321,18 @@ class ThisWeekScreen extends StatelessWidget {
                       height: 220,
                       child: LineChart(
                         LineChartData(
+                          minY: 0,
                           gridData: FlGridData(show: true),
                           titlesData: FlTitlesData(
                             leftTitles: AxisTitles(
-                              sideTitles: SideTitles(showTitles: true, reservedSize: 36),
+                              sideTitles: SideTitles(
+                                showTitles: true,
+                                reservedSize: 36,
+                                interval: 20,
+                                getTitlesWidget: (value, meta) {
+                                  return Text(value.toInt().toString(), style: const TextStyle(fontSize: 10));
+                                },
+                              ),
                             ),
                             bottomTitles: AxisTitles(
                               sideTitles: SideTitles(
@@ -394,7 +429,7 @@ class _MetricCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
+        color: color.withValues(alpha: 0.14),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -428,7 +463,7 @@ class _StatusCard extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: color.withValues(alpha: 0.1),
+        color: color.withValues(alpha: 0.12),
       ),
       child: Column(
         children: [
@@ -858,7 +893,20 @@ class _StatsScreenState extends State<StatsScreen> {
                   height: 220,
                   child: LineChart(
                     LineChartData(
+                      minY: 0,
                       gridData: FlGridData(show: true),
+                      titlesData: FlTitlesData(
+                        leftTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            reservedSize: 36,
+                            interval: 10,
+                            getTitlesWidget: (value, meta) {
+                              return Text(value.toInt().toString(), style: const TextStyle(fontSize: 10));
+                            },
+                          ),
+                        ),
+                      ),
                       borderData: FlBorderData(show: false),
                       lineBarsData: [
                         LineChartBarData(
